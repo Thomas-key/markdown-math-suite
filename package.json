@@ -18,6 +18,10 @@
     "snippet",
     "katex"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thomas-key/markdown-math-suite.git"
+  },
   "files": [
     "extension.js",
     "rules.jsonc",
