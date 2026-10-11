@@ -1,0 +1,70 @@
+{
+  "name": "md-math-suite",
+  "displayName": "Markdown Math Suite",
+  "description": "在 Markdown 数学环境（$ … $ 与 $$ … $$）里输入触发词即时展开成 LaTeX；内置希腊字母、导数积分、极限求和等规则，规则表可自由增删改。",
+  "version": "0.1.0",
+  "publisher": "illusion",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "markdown",
+    "math",
+    "latex",
+    "snippet",
+    "katex"
+  ],
+  "files": [
+    "extension.js",
+    "rules.jsonc",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Markdown Math Suite",
+      "properties": {
+        "mdMathSuite.inMathRules": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "数学环境（`$ … $` 行内、`$$ … $$` 行间）内的规则：`触发词 → 替换`。\n\n内置规则在扩展目录的 `rules.jsonc` 里，可直接编辑（支持注释）。这里写同名键会**覆盖**内置，写新键就是**新增**规则。\n\n替换内容按 LaTeX 写：`$1` `$0` `${1:默认}` 是停靠点，`\\$` 表示字面美元符。",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mdMathSuite.outMathRules": {
+          "type": "object",
+          "default": {},
+          "additionalProperties": {
+            "type": "string"
+          },
+          "markdownDescription": "数学环境**外**的规则：`触发词 → 替换`。同名键会覆盖 `rules.jsonc` 里的内置规则。\n\n替换内容以换行开头时视为**块级规则**：如果触发词本来就在行首，开头的换行会被自动去掉。"
+        },
+        "mdMathSuite.inMathRegexRules": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "数学环境内的**正则**规则：`正则 → 替换`。`{1}` `{2}` 引用捕获组，`$1` `$0` 是停靠点。",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mdMathSuite.outMathRegexRules": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "数学环境外的**正则**规则：`正则 → 替换`。",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

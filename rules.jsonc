@@ -1,0 +1,207 @@
+{
+  // ══════════════════════════════════════════════════════════════
+  //  内置规则表（Markdown 版）
+  //
+  //  · 可以直接改这个文件：支持 // 和 /* */ 注释，也允许尾随逗号。
+  //  · 也可以在 VS Code 设置里写一个同名的键来覆盖它，
+  //    或者写一个新键，那它就是一条新规则。
+  //  · 改完这个文件后，需要重新加载窗口才生效。
+  //
+  //  ── 替换内容怎么写 ──
+  //  · 按 LaTeX 原样写。因为这个文件是 JSON，每个字面反斜杠要写成两个：
+  //        想输出 \alpha        →  写 "\\alpha"
+  //        想输出 \frac{a}{b}    →  写 "\\frac{$1}{$2}"
+  //        想输出集合括号 \{ \} →  写 "\\{$1\\}"
+  //  · $1 $2 $0 是停靠点，${1:默认值} 是带默认值的停靠点。
+  //  · \$ 表示字面美元符（在这里也就是写 "\\$"）。
+  //  · 正则规则里 {1} {2} 引用捕获组，$1 $0 是停靠点。
+  //
+  //  ── 块级规则 ──
+  //  · 替换内容以换行开头（"\n..."）时算块级规则：如果触发词本来就在行首，
+  //    开头的那个换行会被自动去掉。dm 就是这么写的。
+  // ══════════════════════════════════════════════════════════════
+
+  // ── 数学模式内 · 普通规则（匹配光标所在行的行尾）──
+  "inMath": {
+      "@a": "\\alpha",
+      "@b": "\\beta",
+      "@g": "\\gamma",
+      "@G": "\\Gamma",
+      "@d": "\\delta",
+      "@D": "\\Delta",
+      "@e": "\\varepsilon",
+      ":e": "\\epsilon",
+      "@z": "\\zeta",
+      "@t": "\\theta",
+      "@T": "\\Theta",
+      ":t": "\\vartheta",
+      "@i": "\\iota",
+      "@k": "\\kappa",
+      "@l": "\\lambda",
+      "@L": "\\Lambda",
+      "@s": "\\sigma",
+      "@S": "\\Sigma",
+      "@u": "\\upsilon",
+      "@U": "\\Upsilon",
+      "@o": "\\omega",
+      "@O": "\\Omega",
+      "@p": "\\pi",
+      "@m": "\\mu",
+      "@f": "\\phi",
+      "@y": "\\psi",
+      "sr": "^{2}",
+      "cb": "^{3}",
+      "rd": "^{$1}$0",
+      "_": "_{$1}$0",
+      "sts": "_{\\text{$0}}",
+      "sq": "\\sqrt{$1}$0",
+      "//": "\\frac{$1}{$2}$0",
+      "ee": "e^{$1}$0",
+      "invs": "^{-1}",
+      "conj": "^{*}",
+      "Re": "\\operatorname{Re}",
+      "Im": "\\operatorname{Im}",
+      "bf": "\\mathbf{$0}",
+      "rm": "\\mathrm{$1}$0",
+      "trace": "\\operatorname{Tr}",
+      "+-": "\\pm",
+      "-+": "\\mp",
+      "|...": "\\vdots",
+      "/...": "\\ddots",
+      "del": "\\nabla",
+      "xx": "\\times",
+      "**": "\\cdot",
+      "para": "\\parallel",
+      "simm": "\\sim",
+      "sim=": "\\simeq",
+      "===": "\\equiv",
+      "prop": "\\propto",
+      "!>": "\\mapsto",
+      "=<": "\\Longleftrightarrow",
+      "and": "\\cap",
+      "orr": "\\cup",
+      "inn": "\\in",
+      "notin": "\\notin",
+      "setm": "\\setminus",
+      "sub=": "\\subseteq",
+      "sup=": "\\supseteq",
+      "eset": "\\emptyset",
+      "set": "\\{$1\\}$0",
+      "ext": "\\exists",
+      "LL": "\\mathcal{L}",
+      "HH": "\\mathcal{H}",
+      "CC": "\\mathbb{C}",
+      "RR": "\\mathbb{R}",
+      "ZZ": "\\mathbb{Z}",
+      "NN": "\\mathbb{N}",
+      "QQ": "\\mathbb{Q}",
+      "o+": "\\oplus",
+      "ox": "\\otimes",
+      "ddot": "\\ddot{$1}$0",
+      "cdot": "\\cdot",
+      "dot": "\\dot{$1}$0",
+      "hat": "\\hat{$1}$0",
+      "bar": "\\bar{$1}$0",
+      "tilde": "\\tilde{$1}$0",
+      "und": "\\underline{$1}$0",
+      "vec": "\\vec{$1}$0",
+      "par": "\\frac{\\partial ${1:y}}{\\partial ${2:x}} $0",
+      "ddt": "\\frac{\\mathrm{d}}{\\mathrm{d}t}",
+      "iiint": "\\iiint",
+      "iint": "\\iint",
+      "oint": "\\oint",
+      "oinf": "\\int_{0}^{\\infty} $1 \\,\\mathrm{d}${2:x} $0",
+      "infi": "\\int_{-\\infty}^{\\infty} $1 \\,\\mathrm{d}${2:x} $0",
+      "dint": "\\int_{${1:0}}^{${2:1}} $3 \\,\\mathrm{d}${4:x} $0",
+      "int": "\\int $1 \\,\\mathrm{d}${2:x} $0",
+      "brk": "\\langle $1 \\mid $2 \\rangle $0",
+      "pmat": "\\begin{pmatrix}$0\\end{pmatrix}",
+      "bmat": "\\begin{bmatrix}$0\\end{bmatrix}",
+      "matrix": "\\begin{matrix}$0\\end{matrix}",
+      "cases": "\\begin{cases}$0\\end{cases}",
+      "Norm": "\\left\\|$1\\right\\| $0",
+      "norm": "\\left|$1\\right| $0",
+      "ceil": "\\left\\lceil $1 \\right\\rceil $0",
+      "floor": "\\left\\lfloor $1 \\right\\rfloor $0",
+      "lra": "\\left\\langle $1 \\right\\rangle $0",
+      "lr(": "\\left($1\\right) $0",
+      "lr{": "\\left\\{$1\\right\\} $0",
+      "lr[": "\\left[$1\\right] $0",
+      "lr|": "\\left|$1\\right| $0",
+      "tayl": "${1:f}(${2:x} + ${3:h}) = ${1:f}(${2:x}) + ${1:f}'(${2:x})${3:h} + ${1:f}''(${2:x}) \\frac{${3:h}^{2}}{2!} + \\cdots $0",
+      "lsup": "\\limsup_{${1:n} \\to ${2:\\infty}} $0",
+      "linf": "\\liminf_{${1:n} \\to ${2:\\infty}} $0",
+      "lim": "\\lim_{${1:n} \\to ${2:\\infty}} $0",
+      "sum": "\\sum_{${1:i}=${2:1}}^{${3:N}} $0",
+      "prod": "\\prod_{${1:i}=${2:1}}^{${3:N}} $0",
+
+      // ── 括号（带停靠点：自己控制光标，不靠编辑器的自动补全）──
+      "(": "($1)$0",
+      "[": "[$1]$0",
+
+      // ── 常用符号 ──
+      "...": "\\cdots",
+      "oo": "\\infty",
+      "->": "\\to",
+      "<=": "\\le ",
+      ">=": "\\ge ",
+      "!=": "\\neq",
+      "~~": "\\approx",
+
+      // ── 算子名（后面带一个空格，防止 \supx / \sinx 这种粘连报错）──
+      "sup": "\\sup ",
+      "inf": "\\inf ",
+      "max": "\\max ",
+      "min": "\\min ",
+      "sin": "\\sin ",
+      "cos": "\\cos ",
+      "tan": "\\tan ",
+      "cot": "\\cot ",
+      "sec": "\\sec ",
+      "csc": "\\csc ",
+      "arcsin": "\\arcsin ",
+      "arccos": "\\arccos ",
+      "arctan": "\\arctan ",
+      "ln": "\\ln ",
+      "log": "\\log ",
+      "exp": "\\exp ",
+
+      // ── 组合数 / 排列数 ──
+      "Cnn": "C_{$1}^{$2}$0",
+      "Ann": "A_{$1}^{$2}$0",
+
+      // ── 上下花括号 / 证明符号 / 正文 / n 次根 ──
+      "ub": "\\underbrace{$1}_{$2}$0",
+      "ob": "\\overbrace{$1}^{$2}$0",
+      "tf": "\\therefore",
+      "ba": "\\because",
+      "tx": "\\text{$1}$0",
+      "nsq": "\\sqrt[$1]{$2}$0"
+  },
+
+  // ── 数学模式外 · 普通规则 ──
+  "outMath": {
+      // 行内公式：插一对 $…$，光标停在中间
+      "mk": "\\$$1\\$$0",
+      // 行间公式：块级规则（开头那个换行，在行首敲时会自动去掉）
+      "dm": "\n\\$\\$\n$1\n\\$\\$$0"
+  },
+
+  // ── 数学模式内 · 正则规则（{1}/{2} 是捕获组，$1/$0 是停靠点）──
+  "inMathRegex": {
+      "([A-Za-z0-9]+)ddot$": "\\ddot{{1}}",
+      "([A-Za-z0-9]+)dot$": "\\dot{{1}}",
+      "([A-Za-z0-9]+)hat$": "\\hat{{1}}",
+      "([A-Za-z0-9]+)bar$": "\\bar{{1}}",
+      "([A-Za-z0-9]+)tilde$": "\\tilde{{1}}",
+      "([A-Za-z0-9]+)und$": "\\underline{{1}}",
+      "([A-Za-z0-9]+)vec$": "\\vec{{1}}",
+      "([A-Za-z0-9]+),\\.$": "\\mathbf{{1}}",
+      "([A-Za-z0-9]+)\\.,$": "\\mathbf{{1}}",
+      "pa([A-Za-z0-9]+)([A-Za-z0-9]+)$": "\\frac{\\partial {1}}{\\partial {2}}",
+      "([A-Za-z0-9]+)/$": "\\frac{{1}}{$1}$0"
+  },
+
+  // ── 数学模式外 · 正则规则 ──
+  "outMathRegex": {}
+}
